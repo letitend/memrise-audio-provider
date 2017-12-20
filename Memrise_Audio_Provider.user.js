@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name           Memrise Audio Provider
-// @namespace      https://github.com/cooljingle
+// @namespace      https://github.com/mrxsaimon
 // @description    Provides audio for any items you are learning which have none.
 // @match          https://www.memrise.com/course/*/garden/*
 // @match          https://www.memrise.com/garden/review/*
 // @version        0.1.15
-// @updateURL      https://github.com/cooljingle/memrise-audio-provider/raw/master/Memrise_Audio_Provider.user.js
-// @downloadURL    https://github.com/cooljingle/memrise-audio-provider/raw/master/Memrise_Audio_Provider.user.js
+// @updateURL      https://github.com/mrxsaimon/memrise-audio-provider/raw/master/Memrise_Audio_Provider.user.js
+// @downloadURL    https://github.com/mrxsaimon/memrise-audio-provider/raw/master/Memrise_Audio_Provider.user.js
 // @grant          none
 // ==/UserScript==
 
@@ -190,7 +190,7 @@ $(document).ready(function () {
                 context.learnable.audios.push("AUDIO_PROVIDER");
                 if(context.template === "presentation") {
                     var screen = MEMRISE.garden.screens[context.learnable_id].presentation;
-                    if(!screen.audio) {
+                    if(!screen.audio && screen.columns) {
                         screen.columns.push(column);
                         screen.audios = ["AUDIO_PROVIDER"];
                     }
