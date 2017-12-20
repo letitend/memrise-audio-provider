@@ -9,7 +9,7 @@ The easiest method is through an extension/add-on on chrome/firefox:
 - Chrome: install the [Tampermonkey](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo) extension
 - Firefox: install the [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) add-on
 
-Then add the script using the following link: https://github.com/cooljingle/memrise-audio-provider/raw/master/Memrise_Audio_Provider.user.js
+Then add the script using the following link: https://github.com/mrxsaimon/memrise-audio-provider/blob/master/Memrise_Audio_Provider.user.js
 
 ### Usage
 Once the script is installed and enabled, you can simply continue your learning on memrise and the script will kick in whenever required. You can access some script options via clicking the Audio Provider link in the left side bar:
