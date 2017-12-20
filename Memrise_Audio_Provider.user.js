@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name           Memrise Audio Provider
-// @namespace      https://github.com/mrxsaimon
+// @namespace      https://github.com/letitend
 // @description    Provides audio for any items you are learning which have none.
 // @match          https://www.memrise.com/course/*/garden/*
 // @match          https://www.memrise.com/garden/review/*
 // @version        0.1.15
-// @updateURL      https://github.com/mrxsaimon/memrise-audio-provider/raw/master/Memrise_Audio_Provider.user.js
-// @downloadURL    https://github.com/mrxsaimon/memrise-audio-provider/raw/master/Memrise_Audio_Provider.user.js
+// @updateURL      https://github.com/letitend/memrise-audio-provider/raw/master/Memrise_Audio_Provider.user.js
+// @downloadURL    https://github.com/letitend/memrise-audio-provider/raw/master/Memrise_Audio_Provider.user.js
 // @grant          none
 // ==/UserScript==
 
