@@ -1,12 +1,12 @@
 // ==UserScript==
-// @description Memrise Audio Provider.
-// @downloadURL https://github.com/letitend/memrise-audio-provider/raw/master/memrise-audio-provider.user.js
+// @description Memrise Provide Audio.
+// @downloadURL https://github.com/letitend/memrise-provide-audio/raw/master/memrise-provide-audio.user.js
 // @grant       none
 // @match       https://www.memrise.com/course/*/garden/*
 // @match       https://www.memrise.com/garden/review/*
-// @name        Memrise Audio Provider
+// @name        Memrise Provide Audio
 // @namespace   https://github.com/letitend
-// @updateURL   https://github.com/letitend/memrise-audio-provider/raw/master/memrise-audio-provider.user.js
+// @updateURL   https://github.com/letitend/memrise-provide-audio/raw/master/memrise-provide-audio.user.js
 // @version     0.0.1
 // ==/UserScript==
 
@@ -16,17 +16,17 @@ $(document).ready(function() {
         currentWord,
         language,
         linkHtml = $([
-            "<a id='audio-provider-link'>Audio Provider</a>",
-            "<div id='audio-provider-box' style='display:none'>",
+            "<a id='provide-audio-link'>Audio Provider</a>",
+            "<div id='provide-audio-box' style='display:none'>",
             "   <em style='font-size:85%'>audio for this course:",
-            "   </em><select id='audio-provider-options'></select>",
+            "   </em><select id='provide-audio-options'></select>",
             "   <hr/>",
             "   <em style='font-size:85%'>Voice RSS key:",
-            "   <input id='audio-provider-voicerss' type='text' placeholder='enter Voice RSS key'>",
+            "   <input id='provide-audio-voicerss' type='text' placeholder='enter Voice RSS key'>",
             "</div>"
         ].join("\n")),
-        localStorageIdentifier = "memrise-audio-provider-storagev2",
-        localStorageVoiceRssIdentifier = "memrise-audio-provider-voicerss",
+        localStorageIdentifier = "memrise-provide-audio-storagev2",
+        localStorageVoiceRssIdentifier = "memrise-provide-audio-voicerss",
         referrerState,
         requestCount = 0,
         savedChoices = JSON.parse(localStorage.getItem(localStorageIdentifier)) || {},
@@ -40,11 +40,11 @@ $(document).ready(function() {
         canVoiceRss = !!voiceRssKey;
 
     $('#left-area').append(linkHtml);
-    $('#audio-provider-link').click(function() {
-        $('#audio-provider-box').toggle();
+    $('#provide-audio-link').click(function() {
+        $('#provide-audio-box').toggle();
     });
-    $('#audio-provider-voicerss').val(voiceRssKey);
-    $('#audio-provider-voicerss').change(function() {
+    $('#provide-audio-voicerss').val(voiceRssKey);
+    $('#provide-audio-voicerss').change(function() {
         localStorage.setItem(localStorageVoiceRssIdentifier, $(this).val());
     });
 
@@ -118,11 +118,11 @@ $(document).ready(function() {
     }());
 
     function editAudioOptions(context) {
-        $('#audio-provider-options').empty();
+        $('#provide-audio-options').empty();
         var options = ["No audio"].concat([context.learnable.definition, context.learnable.item].filter(x => x.kind === "text").map(x => x.label));
-        _.each(options, o => $('#audio-provider-options').append('<option value="' + o + '">' + o + '</option>'));
-        $('#audio-provider-options').val(wordColumn);
-        $('#audio-provider-options').change(function() {
+        _.each(options, o => $('#provide-audio-options').append('<option value="' + o + '">' + o + '</option>'));
+        $('#provide-audio-options').val(wordColumn);
+        $('#provide-audio-options').change(function() {
             wordColumn = $(this).val();
             savedChoices[courseId] = wordColumn;
             localStorage.setItem(localStorageIdentifier, JSON.stringify(savedChoices));
@@ -166,7 +166,7 @@ $(document).ready(function() {
 
     function injectAudioIfRequired(context) {
         if (canSpeechSynthesize || canGoogleTts || canVoiceRss) {
-            $('#audio-provider-link').show();
+            $('#provide-audio-link').show();
             var column = getAudioColumn(context);
             if (!column) {
                 var columns = context.learnable.columns;
@@ -197,7 +197,7 @@ $(document).ready(function() {
                 return true;
             }
         } else {
-            $('#audio-provider-link').hide();
+            $('#provide-audio-link').hide();
         }
     }
 
