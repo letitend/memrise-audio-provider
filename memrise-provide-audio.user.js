@@ -132,15 +132,6 @@ $(document).ready(function() {
         });
     }
 
-    function getAudioColumn(context) {
-        var audioColumnNumber = _.findKey(context.learnable.columns, function(c) {
-            return c.kind === "audio";
-        });
-        return context.learnable.columns[audioColumnNumber] || _.find(context.learnable.columns, function(c) {
-            return c && c.value && c.value[0] === "AUDIO_PROVIDER";
-        });
-    }
-
     function getCachedElement(source, word) {
         var cachedElem = cachedAudioElements.find(function(obj) {
             return obj.source === source && obj.word === word;
@@ -167,33 +158,8 @@ $(document).ready(function() {
     function injectAudioIfRequired(context) {
         if (canSpeechSynthesize || canGoogleTts || canVoiceRss) {
             $('#provide-audio-link').show();
-            var column = getAudioColumn(context);
-            if (!column) {
-                var columns = context.learnable.columns;
-                column = {
-                    alternatives: [],
-                    always_show: false,
-                    classes: [],
-                    keyboard: "",
-                    kind: "audio",
-                    label: "Audio",
-                    tapping_disabled: false,
-                    typing_disabled: false,
-                    typing_strict: false
-                };
-                columns.push(column);
-            }
-            column.kind = "audio";
-            if (!column.value || column.value.length === 0) {
-                column.value = ["AUDIO_PROVIDER"];
-                context.learnable.audios.push("AUDIO_PROVIDER");
-                if (context.template === "presentation") {
-                    var screen = MEMRISE.garden.screens[context.learnable_id].presentation;
-                    if (!screen.audio && screen.columns) {
-                        screen.columns.push(column);
-                        screen.audios = ["AUDIO_PROVIDER"];
-                    }
-                }
+            if(!context.learnable.audios.length) {
+                context.learnable.audios = MEMRISE.garden.screens[context.learnable_id].presentation.audio = ["AUDIO_PROVIDER"];
                 return true;
             }
         } else {
