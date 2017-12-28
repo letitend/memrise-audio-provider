@@ -7,7 +7,7 @@
 // @name        Memrise Provide Audio
 // @namespace   https://github.com/letitend
 // @updateURL   https://github.com/letitend/memrise-provide-audio/raw/master/memrise-provide-audio.user.js
-// @version     0.0.2
+// @version     0.0.1
 // ==/UserScript==
 
 $(document).ready(function() {
