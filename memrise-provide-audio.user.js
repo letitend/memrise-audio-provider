@@ -84,7 +84,7 @@ $(document).ready(function() {
                                 log("could not find a way to generate audio for language " + language);
                                 $('#audio-provider-link').hide();
                             } else {
-                                isInjected = MEMRISE.garden.screens[result.learnable_id][result.template].audio.value.normal === "AUDIO_PROVIDER";
+                                isInjected = (result.presentationData || result.testData).audio.value.normal === "AUDIO_PROVIDER";
                             }
                             currentWord = _.find([result.learnable.definition, result.learnable.item], x => x.label === wordColumn).value;
                             if (isInjected && currentWord && !canSpeechSynthesize && canGoogleTts) {
